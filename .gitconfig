@@ -1,0 +1,18 @@
+[ghq]
+	root = ~/src
+[alias]
+	st = status
+	difff = diff --word-diff
+	b = branch
+	l = log --oneline --date=short --pretty='format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s'
+	today = log --oneline --since='12 hour ago' --pretty='format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s'
+
+[user]
+	name = reizist
+	email = reizist@gmail.com
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
+  filemode = true
+[color]
+  ui = true

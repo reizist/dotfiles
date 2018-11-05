@@ -1,11 +1,13 @@
 [ghq]
-	root = ~/src
+	root = ~/go/src
 [alias]
 	st = status
 	difff = diff --word-diff
 	b = branch
 	l = log --oneline --date=short --pretty='format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s'
 	today = log --oneline --since='12 hour ago' --pretty='format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s'
+	co = checkout
+	br = branch
 
 [user]
 	name = reizist

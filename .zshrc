@@ -2,8 +2,29 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$HOME/.composer/vendor/bin:$PATH
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export HISTCONTROL=ignoreboth
+HISTIGNORE='?:??:???:exit'
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
 
-eval $(dinghy env)
+setopt HIST_FIND_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_NO_STORE
+
+## for dinghy
+# export DOCKER_HOST=tcp://192.168.99.100:2376
+# export DOCKER_CERT_PATH=/Users/reizist/.docker/machine/machines/dinghy
+# export DOCKER_TLS_VERIFY=1
+# export DOCKER_MACHINE_NAME=dinghy
+# eval $(dinghy env)
+#
+## docker for mac
+# export DOCKER_TLS_VERIFY="1"
+# export DOCKER_HOST="tcp://192.168.99.100:2376"
+# export DOCKER_CERT_PATH="/Users/reizist/.docker/machine/machines/default"
+# export DOCKER_MACHINE_NAME="default"
+# eval $(docker-machine env)
 
 alias vim='nvim'
 alias be='bundle exec'
@@ -13,7 +34,6 @@ eval "$(direnv hook zsh)"
 bindkey -e
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
 
@@ -22,6 +42,7 @@ if [[ ! -d ~/.zplug ]];then
 fi
 
 source ~/.zplug/init.zsh
+source ~/.zplug/per-directory-history.zsh
 
 # enhancd config
 export ENHANCD_COMMAND=ed
@@ -162,3 +183,13 @@ export HADOOP_HOME="/usr/local/Cellar/hadoop/2.8.2"
 export HADOOP_CONF_DIR="$HADOOP_HOME/libexec/etc/hadoop"
 export HIVE_HOME="/usr/local/Cellar/hive/2.3.1"
 export HIVE_CONF_DIR="$HIVE_HOME/libexec/conf"
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+
+alias hubmdpr="hub -c core.commentChar='%' pull-request"
+# Source chtf
+if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
+    source "/usr/local/share/chtf/chtf.sh"
+fi
+
+export DOCKER_BUILDKIT=1
+export TF_CLI_ARGS_plan="--parallelism=30"

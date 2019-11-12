@@ -18,3 +18,7 @@
   filemode = true
 [color]
   ui = true
+[pr-release]
+	token = a60144ad076f8d0aff04f6588748b7926dae800d
+[fetch]
+	prune = true

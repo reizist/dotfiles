@@ -27,7 +27,9 @@ setopt HIST_NO_STORE
 # eval $(docker-machine env)
 
 alias vim='nvim'
+alias rcssh='ec2sshtb'
 alias be='bundle exec'
+alias dc='docker-compose'
 export EDITOR=vim
 eval "$(direnv hook zsh)"
 # for using ctrl+e bind
@@ -165,6 +167,12 @@ function peco-kill-process () {
     ps -ef | peco | awk '{ print $2 }' | xargs kill
     zle clear-screen
 }
+
+function peco-branch () {
+    git branch | peco | xargs git co
+    zle clear-screen
+}
+
 zle -N peco-kill-process
 bindkey '^[' peco-kill-process   # C-k
 function gim() {
@@ -193,3 +201,26 @@ fi
 
 export DOCKER_BUILDKIT=1
 export TF_CLI_ARGS_plan="--parallelism=30"
+
+# for eksctl
+fpath=($fpath ~/.zsh/completion)
+export PATH="$HOME/.cargo/bin:$PATH"
+
+alias ks='kubectl'
+
+kss() {
+  ks config get-contexts | sed "/^\ /d"
+  ks auth can-i get ns >/dev/null 2>&1 && echo "(Authorized)" || echo "(Unauthorized)"
+}
+
+kc() {
+  test "$1" = "-" && kubectx - || kubectx "$(kubectx | peco)"
+}
+
+kn() {
+  test "$1" = "-" && kubens - || kubens "$(kubens | peco)"
+}
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+
+alias qall_run='docker-compose run --rm api'
+export GO111MODULE=on

@@ -3,6 +3,7 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH=$HOME/.composer/vendor/bin:$PATH
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export HISTCONTROL=ignoreboth
+export HISTFILESIZE=10000
 HISTIGNORE='?:??:???:exit'
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
@@ -11,20 +12,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_NO_STORE
-
-## for dinghy
-# export DOCKER_HOST=tcp://192.168.99.100:2376
-# export DOCKER_CERT_PATH=/Users/reizist/.docker/machine/machines/dinghy
-# export DOCKER_TLS_VERIFY=1
-# export DOCKER_MACHINE_NAME=dinghy
-# eval $(dinghy env)
-#
-## docker for mac
-# export DOCKER_TLS_VERIFY="1"
-# export DOCKER_HOST="tcp://192.168.99.100:2376"
-# export DOCKER_CERT_PATH="/Users/reizist/.docker/machine/machines/default"
-# export DOCKER_MACHINE_NAME="default"
-# eval $(docker-machine env)
 
 alias vim='nvim'
 alias rcssh='ec2sshtb'

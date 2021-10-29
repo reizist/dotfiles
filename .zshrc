@@ -17,6 +17,7 @@ alias vim='nvim'
 alias rcssh='ec2sshtb'
 alias be='bundle exec'
 alias dc='docker-compose'
+alias python='python3'
 export EDITOR=vim
 eval "$(direnv hook zsh)"
 # for using ctrl+e bind
@@ -44,7 +45,9 @@ zplug "yous/vanilli.sh"
 zplug "zsh-users/zsh-completions"
 
 # Load the theme.
-zplug "yous/lime"
+# zplug "yous/lime"
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 # Syntax highlighting bundle. zsh-syntax-highlighting must be loaded after
 # excuting compinit command and sourcing other plugins.
@@ -207,7 +210,6 @@ kc() {
 kn() {
   test "$1" = "-" && kubens - || kubens "$(kubens | peco)"
 }
-export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 
-alias qall_run='docker-compose run --rm api'
 export GO111MODULE=on
+

@@ -23,6 +23,7 @@ eval "$(direnv hook zsh)"
 # for using ctrl+e bind
 bindkey -e
 
+export NODEBREW_ROOT=$HOME/.nodebrew/
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH="$GOPATH/bin:$PATH"
 
@@ -213,3 +214,9 @@ kn() {
 
 export GO111MODULE=on
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/reizist/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/reizist/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/reizist/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/reizist/google-cloud-sdk/completion.zsh.inc'; fi

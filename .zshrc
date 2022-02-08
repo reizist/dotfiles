@@ -16,16 +16,22 @@ setopt HIST_NO_STORE
 alias vim='nvim'
 alias rcssh='ec2sshtb'
 alias be='bundle exec'
-alias dc='docker-compose'
+alias dc='docker compose'
 alias python='python3'
+alias pip='pip3'
 export EDITOR=vim
 eval "$(direnv hook zsh)"
 # for using ctrl+e bind
 bindkey -e
 
-export NODEBREW_ROOT=$HOME/.nodebrew/
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH="$GOPATH/bin:$PATH"
+
+
+
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
+# for lima
+export DOCKER_HOST=unix://$HOME/docker.sock
 
 
 if [[ ! -d ~/.zplug ]];then
@@ -175,14 +181,11 @@ bindkey '^r' peco-select-history
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:$PATH"
 eval "$(pyenv init -)"
-export PATH="$PYENV_ROOT/versions/anaconda3-4.2.0/bin/:$PATH"
+eval "$(pyenv init --path)"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
-export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
-export HADOOP_HOME="/usr/local/Cellar/hadoop/2.8.2"
-export HADOOP_CONF_DIR="$HADOOP_HOME/libexec/etc/hadoop"
-export HIVE_HOME="/usr/local/Cellar/hive/2.3.1"
-export HIVE_CONF_DIR="$HIVE_HOME/libexec/conf"
 export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+export PATH="/opt/homebrew/opt/git/bin:$PATH"
+export PATH="$HOME/.nodenv/bin:$PATH"
 
 alias hubmdpr="hub -c core.commentChar='%' pull-request"
 # Source chtf
@@ -220,3 +223,4 @@ if [ -f '/Users/reizist/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/reizist
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/reizist/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/reizist/google-cloud-sdk/completion.zsh.inc'; fi
+eval "$(nodenv init -)"

@@ -61,15 +61,15 @@ zplug "zsh-users/zsh-completions"
 
 # Load the theme.
 # zplug "yous/lime"
-zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug mafredri/zsh-async, from:github, at:ee1d11b
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme, at:2f13dea
 
 # Syntax highlighting bundle. zsh-syntax-highlighting must be loaded after
 # excuting compinit command and sourcing other plugins.
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-syntax-highlighting", defer:2, at:754cefe
 
 # ZSH port of Fish shell's history search feature
-zplug "zsh-users/zsh-history-substring-search", defer:2
+zplug "zsh-users/zsh-history-substring-search", defer:2, at:400e58a
 
 # Tracks your most used directories, based on 'frecency'.
 zplug "rupa/z", use:"*.sh"

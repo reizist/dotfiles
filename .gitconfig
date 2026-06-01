@@ -14,7 +14,7 @@
 	email = reizist@gmail.com
 [core]
   excludesfile = ~/.gitignore
-  editor = vim
+	editor = nvim
   filemode = true
 [color]
   ui = true

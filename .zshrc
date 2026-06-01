@@ -1,9 +1,16 @@
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.bun/bin:$PATH"
+
 export PATH=$HOME/.composer/vendor/bin:$PATH
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+# export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export HISTCONTROL=ignoreboth
 export HISTFILESIZE=10000
+# Machine-local secrets (OPENAI_API_KEY etc.) live in ~/.zshrc.local (untracked)
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+
+
 HISTIGNORE='?:??:???:exit'
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
@@ -13,6 +20,7 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_NO_STORE
 
+alias windsurf='windsurf-next'
 alias vim='nvim'
 alias rcssh='ec2sshtb'
 alias be='bundle exec'
@@ -31,7 +39,7 @@ export PATH="$GOPATH/bin:$PATH"
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 # for lima
-export DOCKER_HOST=unix://$HOME/docker.sock
+# export DOCKER_HOST=unix://$HOME/docker.sock
 
 
 if [[ ! -d ~/.zplug ]];then
@@ -103,16 +111,9 @@ if [ -e "$HOME/.rbenv" ]; then
   eval "$(rbenv init - zsh)"
 fi
 
-# Set GOPATH for Go
-if command -v go &> /dev/null; then
-  [ -d "$HOME/go" ] || mkdir "$HOME/go"
-  export GOPATH="$HOME/go"
-  export GOROOT=/usr/local/opt/go/libexec
-  export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
-fi
 
 # Set PATH for GAE
-export PATH=$HOME/go/appengine:$PATH
+# export PATH=$HOME/go/appengine:$PATH
 
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
@@ -197,30 +198,53 @@ export DOCKER_BUILDKIT=1
 export TF_CLI_ARGS_plan="--parallelism=30"
 
 # for eksctl
-fpath=($fpath ~/.zsh/completion)
-export PATH="$HOME/.cargo/bin:$PATH"
+# fpath=($fpath ~/.zsh/completion)
+# export PATH="$HOME/.cargo/bin:$PATH"
+# 
+# alias ks='kubectl'
 
-alias ks='kubectl'
+# kss() {
+#   ks config get-contexts | sed "/^\ /d"
+#   ks auth can-i get ns >/dev/null 2>&1 && echo "(Authorized)" || echo "(Unauthorized)"
+# }
 
-kss() {
-  ks config get-contexts | sed "/^\ /d"
-  ks auth can-i get ns >/dev/null 2>&1 && echo "(Authorized)" || echo "(Unauthorized)"
-}
-
-kc() {
-  test "$1" = "-" && kubectx - || kubectx "$(kubectx | peco)"
-}
-
-kn() {
-  test "$1" = "-" && kubens - || kubens "$(kubens | peco)"
-}
-
-export GO111MODULE=on
+#  kc() {
+#    test "$1" = "-" && kubectx - || kubectx "$(kubectx | peco)"
+#  }
+#  
+#  kn() {
+#    test "$1" = "-" && kubens - || kubens "$(kubens | peco)"
+#  }
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/reizist/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/reizist/google-cloud-sdk/path.zsh.inc'; fi
-
+# if [ -f '/Users/reizist/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/reizist/google-cloud-sdk/path.zsh.inc'; fi
+ 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/reizist/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/reizist/google-cloud-sdk/completion.zsh.inc'; fi
 eval "$(nodenv init -)"
+# eval "$(zellij setup --generate-auto-start zsh)"
+
+
+# bun completions
+[ -s "/Users/kainumareiji/.bun/_bun" ] && source "/Users/kainumareiji/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+
+export PATH=$HOME/.rill:$PATH # Added by Rill install
+
+. "$HOME/.local/bin/env"
+eval "$(uv generate-shell-completion zsh)"
+
+# Added by Windsurf
+export PATH="/Users/kainumareiji/.codeium/windsurf/bin:$PATH"
+# Added by Windsurf - Next
+export PATH="/Users/kainumareiji/.codeium/windsurf/bin:$PATH"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"

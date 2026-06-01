@@ -39,6 +39,7 @@ LINKS=(
   ".tigrc"
   ".peco"
   ".config/nvim"
+  ".config/ghostty/config"
 )
 
 info()  { printf '\033[0;34m%s\033[0m\n' "$*"; }

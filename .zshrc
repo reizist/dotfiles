@@ -48,7 +48,9 @@ if [[ ! -d ~/.zplug ]];then
 fi
 
 source ~/.zplug/init.zsh
-source ~/.zplug/per-directory-history.zsh
+# per-directory-history.zsh is a machine-local file copied into ~/.zplug by
+# hand (not part of the zplug repo); source it only when present.
+[ -f ~/.zplug/per-directory-history.zsh ] && source ~/.zplug/per-directory-history.zsh
 
 # enhancd config
 export ENHANCD_COMMAND=ed

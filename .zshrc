@@ -28,10 +28,11 @@ alias dc='docker compose'
 alias python='python3'
 alias pip='pip3'
 export EDITOR=vim
-eval "$(direnv hook zsh)"
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 # for using ctrl+e bind
 bindkey -e
 
+export GOPATH="${GOPATH:-$HOME/go}"
 export PATH="$GOPATH/bin:$PATH"
 
 
@@ -179,8 +180,10 @@ zle -N peco-select-history
 bindkey '^r' peco-select-history
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv init --path)"
+if command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv init --path)"
+fi
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 export PATH="/opt/homebrew/opt/git/bin:$PATH"
@@ -220,7 +223,7 @@ export TF_CLI_ARGS_plan="--parallelism=30"
  
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/reizist/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/reizist/google-cloud-sdk/completion.zsh.inc'; fi
-eval "$(nodenv init -)"
+command -v nodenv >/dev/null 2>&1 && eval "$(nodenv init -)"
 # eval "$(zellij setup --generate-auto-start zsh)"
 
 
@@ -237,8 +240,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export PATH=$HOME/.rill:$PATH # Added by Rill install
 
-. "$HOME/.local/bin/env"
-eval "$(uv generate-shell-completion zsh)"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+command -v uv >/dev/null 2>&1 && eval "$(uv generate-shell-completion zsh)"
 
 # Added by Windsurf
 export PATH="/Users/kainumareiji/.codeium/windsurf/bin:$PATH"

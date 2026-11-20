@@ -251,3 +251,6 @@ export PATH="/Users/kainumareiji/.codeium/windsurf/bin:$PATH"
 export PATH="/Users/kainumareiji/.codeium/windsurf/bin:$PATH"
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# Hermes Agent command
+case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH" ;; esac

@@ -21,7 +21,6 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_NO_STORE
 
 alias windsurf='windsurf-next'
-alias vim='nvim'
 alias rcssh='ec2sshtb'
 alias be='bundle exec'
 alias dc='docker compose'
